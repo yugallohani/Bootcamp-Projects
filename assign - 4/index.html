@@ -1,0 +1,234 @@
+<!-- Created by Yugal Lohani for Assignment 4 - Birthday Card -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Yugal!</title>
+
+    <!-- Google Fonts: Dancing Script & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --card-bg: #fdf4f5; /* Light Pink */
+            --primary-color: #d63384; /* Deep Pink */
+            --secondary-color: #6610f2; /* Lavender */
+            --text-color: #495057;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e0c3fc; /* Light Lavender background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            overflow: hidden; /* Hide confetti overflow */
+        }
+
+        .birthday-card {
+            background-color: var(--card-bg);
+            width: 100%;
+            max-width: 500px;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: fadeInCard 1s ease-out;
+        }
+
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .card-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card-subheading {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+        }
+
+        .card-quote {
+            font-style: italic;
+            color: var(--secondary-color);
+            margin: 2rem 0;
+            padding: 0 1rem;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .card-from {
+            margin-top: 2.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        /* --- Celebrate Button & Confetti Toggle --- */
+        .celebrate-btn {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-top: 1.5rem;
+            display: inline-block;
+        }
+
+        .celebrate-btn:hover {
+            background-color: #c21f70;
+            transform: scale(1.05);
+        }
+
+        #celebrate-toggle {
+            display: none;
+        }
+        
+        /* --- Balloon Animation --- */
+        .balloon {
+            width: 70px;
+            height: 90px;
+            background-color: var(--primary-color);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: absolute;
+            opacity: 0.7;
+            animation: float 15s infinite ease-in-out;
+            z-index: -1;
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 50px;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .balloon:nth-child(1) {
+            background-color: #ffadad; /* Pastel Red */
+            left: 10%;
+            top: 100%;
+            animation-duration: 12s;
+            animation-delay: 1s;
+        }
+
+        .balloon:nth-child(2) {
+            background-color: #a0c4ff; /* Pastel Blue */
+            left: 80%;
+            top: 100%;
+            animation-duration: 18s;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-800px) rotate(15deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        /* --- Confetti Animation --- */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+        }
+
+        #celebrate-toggle:checked ~ .confetti-container .confetti {
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Generate multiple confetti pieces */
+        .confetti:nth-child(1) { left: 10%; background: #ffadad; animation-delay: 0s; }
+        .confetti:nth-child(2) { left: 20%; background: #ffd6a5; animation-delay: 0.3s; }
+        .confetti:nth-child(3) { left: 30%; background: #fdffb6; animation-delay: 0.6s; }
+        .confetti:nth-child(4) { left: 40%; background: #caffbf; animation-delay: 0.1s; }
+        .confetti:nth-child(5) { left: 50%; background: #9bf6ff; animation-delay: 0.4s; }
+        .confetti:nth-child(6) { left: 60%; background: #a0c4ff; animation-delay: 0.7s; }
+        .confetti:nth-child(7) { left: 70%; background: #bdb2ff; animation-delay: 0.2s; }
+        .confetti:nth-child(8) { left: 80%; background: #ffc6ff; animation-delay: 0.5s; }
+        .confetti:nth-child(9) { left: 90%; background: #ffadad; animation-delay: 0.8s; }
+        .confetti:nth-child(10) { left: 15%; background: #caffbf; animation-delay: 1s; }
+        .confetti:nth-child(11) { left: 25%; background: #a0c4ff; animation-delay: 1.3s; }
+        .confetti:nth-child(12) { left: 35%; background: #ffc6ff; animation-delay: 1.6s; }
+        .confetti:nth-child(13) { left: 45%; background: #ffd6a5; animation-delay: 1.1s; }
+        .confetti:nth-child(14) { left: 55%; background: #fdffb6; animation-delay: 1.4s; }
+        .confetti:nth-child(15) { left: 65%; background: #9bf6ff; animation-delay: 1.7s; }
+
+
+        /* --- Responsive Design --- */
+        @media (max-width: 600px) {
+            .birthday-card {
+                padding: 2rem;
+            }
+            .card-title {
+                font-size: 2.5rem;
+            }
+            .card-subheading {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Balloons for background animation -->
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+
+    <!-- Hidden checkbox to toggle confetti -->
+    <input type="checkbox" id="celebrate-toggle">
+
+    <!-- Confetti container -->
+    <div class="confetti-container">
+        <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+        <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+        <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+        <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+        <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+    </div>
+    
+    <div class="birthday-card">
+        <h1 class="card-title">Happy Birthday!</h1>
+        <p class="card-subheading">Wishing you a day full of joy, laughter, and blessings 🎂🎈</p>
+        <blockquote class="card-quote">
+            “Count your life by smiles, not tears. Count your age by friends, not years.”
+        </blockquote>
+        <p class="card-from">From: Yugal Lohani</p>
+
+        <label for="celebrate-toggle" class="celebrate-btn">Celebrate! 🎉</label>
+    </div>
+
+</body>
+</html>
