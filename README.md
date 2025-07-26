@@ -2,14 +2,14 @@
 
 This repository contains assignments for Yugal Lohani's Bootcamp. Each assignment demonstrates modern web development skills and creative design:
 
-## Assignments
-- **assign - 1:** Gym Signup Form
-- **assign - 2:** Member Records Table
-- **assign - 3:** Personal Portfolio
-- **assign - 4:** Animated Birthday Card
+## Assignments & Live Demos
+- **assign - 1:** [Gym Signup Form](https://bootcamp-projects-gamma.vercel.app/)
+- **assign - 2:** [Member Records Table](https://assign-2-lime.vercel.app/)
+- **assign - 3:** [Personal Portfolio](https://resume-yugal.vercel.app/)
+- **assign - 4:** [Animated Birthday Card](https://birthday-card-lyart-two.vercel.app/)
 
 ## How to Use
-Open each assignment's `index.html` in your browser to view and interact with the project.
+Visit the provided links above to view and interact with each assignment live.
 
 ## Author
 Yugal Lohani
