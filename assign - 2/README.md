@@ -6,4 +6,4 @@ This assignment displays a styled, responsive table of gym member records. Featu
 - Member details: ID, name, age, gender, membership, time slot, phone, join date
 
 ## How to Use
-Open `index.html` in your browser to view the member records table.
+Visit the deployed app: [Gym Member Records Table](https://assign-2-lime.vercel.app/)

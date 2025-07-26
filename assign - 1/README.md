@@ -7,4 +7,4 @@ This assignment is a responsive gym signup form for Yugal's Gym. It features:
 - Success message on valid submission
 
 ## How to Use
-Open `index.html` in your browser and fill out the form to simulate a gym signup.
+Visit the deployed app: [Yugal Gym Signup Form](https://bootcamp-projects-gamma.vercel.app/)

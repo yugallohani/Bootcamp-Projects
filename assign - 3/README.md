@@ -6,4 +6,4 @@ This assignment is a personal portfolio for Yugal Lohani, showcasing:
 - Responsive two-column layout with modern design
 
 ## How to Use
-Open `index.html` in your browser to view the portfolio.
+Visit the deployed app: [Personal Portfolio](https://resume-yugal.vercel.app/)

@@ -6,4 +6,4 @@ This assignment is a creative birthday card featuring:
 - "Celebrate!" button to trigger confetti animation
 
 ## How to Use
-Open `index.html` in your browser and click the "Celebrate!" button to see the animation.
+Visit the deployed app: [Animated Birthday Card](https://birthday-card-lyart-two.vercel.app/)
