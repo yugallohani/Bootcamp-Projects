@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yugal Lohani | Full-Stack Developer</title>
+
+    <!-- Google Font: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS Reset & Base Styles --- */
+        :root {
+            --primary-color: #2c3e50; /* Dark Navy */
+            --secondary-color: #3498db; /* Bright Blue */
+            --background-color: #f9f9f9;
+            --card-background: #ffffff;
+            --text-color: #333;
+            --light-text-color: #777;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        /* --- 2-Column Layout for Desktop --- */
+        @media (min-width: 992px) {
+            .container {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+
+        /* --- General Styling --- */
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        h1 { font-size: 2.5rem; line-height: 1.2; }
+        h2 { font-size: 1.5rem; border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem; }
+        h3 { font-size: 1.2rem; font-weight: 600; }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        /* --- Card Styling --- */
+        .card {
+            background-color: var(--card-background);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        /* --- Header / Contact Section --- */
+        .header-card {
+            text-align: center;
+        }
+        
+        .contact-info ul li {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 0.8rem;
+            text-align: left;
+        }
+
+        .contact-info svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 1rem;
+            fill: var(--secondary-color);
+        }
+
+        /* --- Technologies & Skills Lists --- */
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-list li, .skills-list li {
+            background-color: #eef5f9;
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .skills-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Projects Section --- */
+        .project-item {
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--border-color);
+            padding-left: 1rem;
+        }
+        .project-item:last-child {
+            margin-bottom: 0;
+        }
+        .project-tech {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: var(--light-text-color);
+            margin: 0.25rem 0;
+        }
+
+        /* --- Education & Publication --- */
+        .education-item, .publication-item {
+            margin-bottom: 1rem;
+        }
+        .education-item p, .publication-item p {
+            margin: 0;
+        }
+        .date, .cgpa {
+            color: var(--light-text-color);
+            font-size: 0.9rem;
+        }
+        
+        /* --- Achievements List --- */
+        .achievements-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .achievements-list li::before {
+            content: '🏆';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Left Column: Contact, Education, Skills, Achievements -->
+        <aside class="left-column">
+            <div class="card header-card">
+                <h1>Yugal Lohani</h1>
+                <p>Full-Stack Developer</p>
+            </div>
+
+            <div class="card contact-info">
+                <ul>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        <a href="tel:+919560642358">(+91) 9560642358</a>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+                        <a href="mailto:contact@yugallohani.xyz">contact@yugallohani.xyz</a>
+                    </li>
+                     <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-3.06v8.34h3.06v-4.57c0-1.22.22-2.4 1.72-2.4s1.5 1.42 1.5 2.47v4.5h3.06M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69.75 1.68 1.68 0 0 0 0 1.87c.46.46 1.08.75 1.69.75M8.44 18.5H5.32V10.16h3.12v8.34Z"/></svg>
+                        <a href="https://www.linkedin.com/in/yugal-lohani/" target="_blank">linkedin.com/in/yugal-lohani</a>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.7-2.8 5.7-5.5 6 .4.3.8 1 .8 2v2.9c0 .3.2.7.8.6A12 12 0 0 0 12 .3Z"/></svg>
+                        <a href="https://github.com/yugallohani" target="_blank">github.com/yugallohani</a>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <span>Gurugram, 122001</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Education</h2>
+                <div class="education-item">
+                    <h3>B.Tech in CSE</h3>
+                    <p>K.R. Mangalam University</p>
+                    <p class="date">Aug 2022 – July 2026</p>
+                    <p class="cgpa">CGPA: 7.79</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Skills</h2>
+                <h3>Core</h3>
+                <ul class="skills-list tech-list">
+                    <li>DSA</li>
+                    <li>Agile Development</li>
+                    <li>DevOps (Vercel, Render)</li>
+                </ul>
+                <br>
+                <h3>Soft</h3>
+                <ul class="skills-list tech-list">
+                    <li>Communication</li>
+                    <li>Teamwork</li>
+                    <li>Time Management</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Achievements</h2>
+                <ul class="achievements-list">
+                    <li>Best Paper Award (IESS 2025)</li>
+                    <li>1st Prize Coding Competition (CSI Club)</li>
+                    <li>Hosted Edude-Fiesta</li>
+                    <li>Co-led TechOdyssey</li>
+                    <li>Organized Design-a-thon</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Right Column: Summary, Tech, Projects, Publications -->
+        <main class="right-column">
+            <div class="card">
+                <h2>Summary</h2>
+                <p>
+                    A highly motivated full-stack developer dedicated to building captivating and performant web experiences. I leverage modern AI tools and frameworks to create innovative solutions, with a keen eye for integrating seamless design and robust functionality. Passionate about clean code and collaborative development to bring ideas to life.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2>Technologies</h2>
+                <h3>Languages</h3>
+                <ul class="tech-list">
+                    <li>Java</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>Python</li>
+                </ul>
+                <br>
+                <h3>Frameworks & Tools</h3>
+                <ul class="tech-list">
+                    <li>React</li>
+                    <li>Node.js</li>
+                    <li>MongoDB</li>
+                    <li>MySQL</li>
+                    <li>Supabase</li>
+                    <li>Firebase</li>
+                    <li>REST APIs</li>
+                    <li>Git</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Projects</h2>
+                <div class="project-item">
+                    <h3><a href="https://github.com/yugallohani/TokenUp" target="_blank">TokenUp</a></h3>
+                    <p class="project-tech">AI, React, Node.js, Blockchain</p>
+                    <p>A decentralized platform for enhancing student engagement through automated incentives and AI-verified credentials on the blockchain.</p>
+                </div>
+                <div class="project-item">
+                    <h3><a href="https://github.com/yugallohani/PaisaBachao" target="_blank">PaisaBachao</a></h3>
+                    <p class="project-tech">React 19, Supabase, Clerk, AI APIs</p>
+                    <p>An intelligent financial management application that provides AI-powered budgeting assistance and personalized insights to help users save money.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Research & Publications</h2>
+                <div class="publication-item">
+                    <h3>TokenUp: A Decentralized Platform for Enhancing Student Engagement</h3>
+                    <p><em>IJMSRT (March 2025)</em></p>
+                    <a href="https://ijmsrt.com/articles/view/tokenup-a-decentralized-platform-for-enhancing-student-engagement-in-education-through-automated-incentives-and-ai-verified-credentials" target="_blank">View Publication</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
