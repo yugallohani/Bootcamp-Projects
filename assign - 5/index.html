@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human stories & ideas - Medium</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts for the specific serif font used in the heading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom styles to apply the imported fonts */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="bg-[#FFFCF5] text-black">
+
+    <div class="container mx-auto px-6 flex flex-col min-h-screen">
+        <!-- Header Section -->
+        <header class="py-6 border-b border-black">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="text-3xl font-bold">
+                    Medium
+                </div>
+                <!-- Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-6 text-sm">
+                    <a href="#" class="hover:underline">Our story</a>
+                    <a href="#" class="hover:underline">Membership</a>
+                    <a href="#" class="hover:underline">Write</a>
+                    <a href="#" class="hover:underline">Sign In</a>
+                    <a href="#" class="bg-black text-white rounded-full px-4 py-2 text-sm font-medium hover:bg-gray-800 transition-colors">Get started</a>
+                </nav>
+                <!-- Mobile Get Started Button -->
+                <div class="md:hidden">
+                     <a href="#" class="bg-black text-white rounded-full px-4 py-2 text-sm font-medium hover:bg-gray-800 transition-colors">Get started</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content (Hero Section) -->
+        <main class="flex-grow py-12 md:py-24">
+            <div class="flex flex-col md:flex-row items-center">
+                <!-- Left Side: Text Content -->
+                <div class="md:w-1/2 lg:w-3/5 text-center md:text-left">
+                    <h1 class="font-playfair text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-none tracking-tight" style="font-family: gt-super, Georgia, Cambria;">
+                        Human <br>stories &amp; ideas
+                    </h1>
+                    <p class="mt-6 text-lg md:text-xl max-w-md mx-auto md:mx-0">A place to read, write, and deepen your understanding</p>
+                    <a href="#" class="mt-8 inline-block bg-black text-white rounded-full px-8 py-3 text-lg font-medium hover:bg-gray-800 transition-colors">Start reading</a>
+                </div>
+                
+                <!-- Right Side: Image -->
+                <div class="hidden md:block md:w-1/2 lg:w-2/5 mt-12 md:mt-0">
+                    <img src="https://miro.medium.com/v2/format:webp/4*SdjkdS98aKH76I8eD0_qjw.png" alt="A green flower and a hand writing on a geometric background" class="w-full h-auto" onerror="this.onerror=null;this.src='https://placehold.co/600x400/efefef/333?text=Image+Not+Found';">
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="py-6 mt-auto">
+             <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+                <a href="#" class="hover:underline">Help</a>
+                <a href="#" class="hover:underline">Status</a>
+                <a href="#" class="hover:underline">About</a>
+                <a href="#" class="hover:underline">Careers</a>
+                <a href="#" class="hover:underline">Press</a>
+                <a href="#" class="hover:underline">Blog</a>
+                <a href="#" class="hover:underline">Privacy</a>
+                <a href="#" class="hover:underline">Terms</a>
+                <a href="#" class="hover:underline">Text to speech</a>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
