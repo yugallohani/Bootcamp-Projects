@@ -7,7 +7,6 @@ This assignment is a clone of the Medium homepage hero section, featuring:
 - Modern design and accessibility features
 
 ## How to Use
-Open `index.html` in your browser to view the Medium hero section clone.
+Visit the deployed app:
 
-## Deployment
-A deployment link will be added soon.
+

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Created by Yugal Lohani for Assignment 6 – Wikipedia Clone -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albert Einstein - Wikipedia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <style>
+        /* --- General Setup & Typography --- */
+        :root {
+            --wiki-blue: #0645AD;
+            --wiki-blue-hover: #0d59d2;
+            --border-color: #a2a9b1;
+            --bg-light-gray: #f8f9fa;
+            --text-color: #202122;
+            --secondary-text: #54595d;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            background-color: #f6f6f6;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        a {
+            color: var(--wiki-blue);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: var(--wiki-blue-hover);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+            font-weight: normal;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3em;
+            margin-bottom: 0.6em;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 1.5em;
+        }
+        
+        h3 {
+            font-size: 1.4em;
+            border-bottom: none;
+            font-weight: bold;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        /* --- Main Layout --- */
+        .page-container {
+            display: flex;
+            flex-direction: row;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+        }
+
+        /* --- Page Header --- */
+        .page-header {
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            background-color: white;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Allow wrapping for responsiveness */
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .logo-icon {
+            height: 50px;
+            width: 50px;
+        }
+        .logo-wordmark {
+            display: block;
+            height: 18px;
+            margin-bottom: 4px;
+        }
+        .logo-tagline {
+            display: block;
+            height: 13px;
+        }
+
+        /* --- Search Bar --- */
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        .search-form {
+            display: flex;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .search-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            padding: 0.5rem 0.75rem 0.5rem 2.25rem; /* Left padding for icon */
+            border: none;
+            width: 250px;
+            font-size: 0.9rem;
+            background-color: #fff;
+        }
+        .search-input:focus {
+            outline: 2px solid var(--wiki-blue);
+            outline-offset: -2px;
+        }
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            width: 16px;
+            height: 16px;
+            fill: var(--secondary-text);
+            pointer-events: none; /* Make icon non-interactive */
+        }
+        .search-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-left: 1px solid var(--border-color);
+            background-color: var(--bg-light-gray);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        .search-button:hover {
+            background-color: #e9ecef;
+        }
+
+        /* --- Left Sidebar (Table of Contents) --- */
+        .sidebar-nav {
+            flex: 0 0 240px; /* Do not grow, do not shrink, base width 240px */
+            padding: 1.5rem 1rem;
+            border-right: 1px solid var(--border-color);
+            background-color: var(--bg-light-gray);
+            height: 100%;
+        }
+
+        .toc {
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+
+        .toc-title {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .toc-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .toc-list ul {
+            list-style-type: none;
+            padding-left: 1.5rem;
+            font-size: 0.9em;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Main Content Area --- */
+        .main-content {
+            flex: 1; /* Takes up remaining space */
+            padding: 2rem 2.5rem;
+            min-width: 0; /* Prevents flexbox overflow */
+        }
+        
+        /* --- Infobox (Right-aligned Aside) --- */
+        .infobox {
+            float: right;
+            width: 300px;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-light-gray);
+            padding: 1rem;
+            font-size: 0.9em;
+            border-radius: 4px;
+        }
+
+        .infobox img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .infobox-caption {
+            text-align: center;
+            font-style: italic;
+            color: var(--secondary-text);
+        }
+
+        .infobox-title {
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .infobox-data {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .infobox-data th, .infobox-data td {
+            text-align: left;
+            padding: 0.4rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .infobox-data th {
+            font-weight: bold;
+            width: 35%;
+        }
+
+        /* --- Blockquote --- */
+        blockquote {
+            border-left: 4px solid var(--border-color);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            font-size: 1.1em;
+            color: var(--secondary-text);
+        }
+
+        blockquote p {
+            margin: 0;
+        }
+
+        /* --- References --- */
+        .references {
+            font-size: 0.9em;
+            column-count: 2;
+            column-gap: 2rem;
+        }
+        .references ol {
+            padding-left: 1.2rem;
+        }
+
+        /* --- Footer --- */
+        .page-footer {
+            clear: both; /* Important to clear floats */
+            padding: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85em;
+            color: var(--secondary-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1024px) {
+            .page-container {
+                flex-direction: column;
+            }
+
+            .sidebar-nav {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .main-content {
+                padding: 1.5rem;
+            }
+            .references {
+                column-count: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            .search-container {
+                width: 100%;
+            }
+            .search-form {
+                width: 100%;
+            }
+            .search-wrapper {
+                flex-grow: 1;
+            }
+            .search-input {
+                width: 100%;
+            }
+            
+            .infobox {
+                float: none;
+                width: 100%;
+                margin-left: 0;
+            }
+            
+            h1 { font-size: 1.8em; }
+            h2 { font-size: 1.5em; }
+            
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="page-header">
+        <div class="logo-container">
+            <a href="#">
+                <img src="https://en.wikipedia.org/static/images/icons/wikipedia.png" alt="Wikipedia Globe Logo" class="logo-icon">
+            </a>
+            <a href="#">
+                <div>
+                    <img src="https://en.wikipedia.org/static/images/mobile/copyright/wikipedia-wordmark-en.svg" alt="Wikipedia Wordmark" class="logo-wordmark">
+                    <img src="https://en.wikipedia.org/static/images/mobile/copyright/wikipedia-tagline-en.svg" alt="Wikipedia Tagline" class="logo-tagline">
+                </div>
+            </a>
+        </div>
+        <div class="search-container">
+            <form action="#" class="search-form" role="search">
+                <div class="search-wrapper">
+                    <input type="search" placeholder="Search Wikipedia" class="search-input" aria-label="Search Wikipedia">
+                    <svg class="search-icon" viewBox="0 0 20 20" aria-hidden="true">
+                        <path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="page-container">
+        <nav class="sidebar-nav">
+            <div class="toc">
+                <p class="toc-title">Contents</p>
+                <ul class="toc-list">
+                    <li><a href="#introduction">1. Introduction</a></li>
+                    <li><a href="#biography">2. Biography</a>
+                        <ul>
+                            <li><a href="#early_life">2.1 Early life and education</a></li>
+                            <li><a href="#marriages">2.2 Marriages and children</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#scientific_career">3. Scientific career</a>
+                        <ul>
+                            <li><a href="#annus_mirabilis">3.1 Annus mirabilis papers</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#political_views">4. Political and humanitarian work</a></li>
+                    <li><a href="#legacy">5. Legacy</a>
+                        <ul>
+                            <li><a href="#awards_honors">5.1 Awards and honors</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#references">6. References</a></li>
+                    <li><a href="#see_also">7. See also</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <h1>Albert Einstein</h1>
+
+            <aside class="infobox">
+                <p class="infobox-title">Albert Einstein</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Albert_Einstein_1947.jpg/250px-Albert_Einstein_1947.jpg" alt="Albert Einstein in 1947" onerror="this.onerror=null;this.src='https://placehold.co/300x375/ccc/000?text=Image+Not+Found';">
+                <p class="infobox-caption">Einstein at the Institute for Advanced Study, Princeton, New Jersey, 1947.</p>
+                <table class="infobox-data">
+                    <tr>
+                        <th>Born</th>
+                        <td>14 March 1879<br>Ulm, Kingdom of Württemberg, German Empire</td>
+                    </tr>
+                    <tr>
+                        <th>Died</th>
+                        <td>18 April 1955 (aged 76)<br>Princeton, New Jersey, U.S.</td>
+                    </tr>
+                    <tr>
+                        <th>Nationality</th>
+                        <td>German, Swiss, American</td>
+                    </tr>
+                    <tr>
+                        <th>Known for</th>
+                        <td>General relativity<br>Special relativity<br>Photoelectric effect<br>Mass–energy equivalence</td>
+                    </tr>
+                </table>
+            </aside>
+
+            <p id="introduction">
+                <b>Albert Einstein</b> (14 March 1879 – 18 April 1955) was a German-born theoretical physicist who is widely held to be one of the greatest and most influential scientists of all time. Best known for developing the theory of relativity, Einstein also made important contributions to quantum mechanics, and was thus a central figure in the revolutionary reshaping of the scientific understanding of nature that modern physics accomplished in the first decades of the twentieth century.
+            </p>
+            <p>
+                His mass–energy equivalence formula <i>E = mc<sup>2</sup></i>, which arises from relativity theory, has been dubbed "the world's most famous equation". He received the 1921 Nobel Prize in Physics "for his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect", a pivotal step in the development of quantum theory. His work is also known for its influence on the philosophy of science.
+            </p>
+
+            <h2 id="biography">Biography</h2>
+            <h3 id="early_life">Early life and education</h3>
+            <p>
+                Albert Einstein was born in Ulm, in the Kingdom of Württemberg, German Empire, on 14 March 1879 into a family of secular Ashkenazi Jews. His parents were Hermann Einstein, a salesman and engineer, and Pauline Koch. In 1880, the family moved to Munich, where Einstein's father and his uncle Jakob founded Elektrotechnische Fabrik J. Einstein & Cie, a company that manufactured electrical equipment based on direct current.
+            </p>
+
+            <h3 id="marriages">Marriages and children</h3>
+            <p>
+                The correspondence between Einstein and Mileva Marić, a fellow student at ETH, was discovered and published in 1987. It revealed that the couple had a daughter, "Lieserl", born in early 1902 in Novi Sad where Marić was staying with her parents. Marić had returned to Switzerland without the child, whose real name and fate are unknown. Einstein and Marić married in January 1903. In May 1904, their son Hans Albert Einstein was born in Bern, Switzerland. Their son Eduard was born in Zürich in July 1910.
+            </p>
+            
+            <h2 id="scientific_career">Scientific career</h2>
+            <p>
+                Throughout his life, Einstein published hundreds of scientific papers and over 150 non-scientific works. On 30 June 1905, Einstein completed his paper "On the Electrodynamics of Moving Bodies", which introduced the theory of special relativity. In the same year, he submitted his thesis "A New Determination of Molecular Dimensions", which earned him a PhD. This year is often referred to as his "annus mirabilis" (miracle year) because he published four groundbreaking papers.
+            </p>
+            <h3 id="annus_mirabilis">Annus mirabilis papers</h3>
+            <p>In 1905, often called his "miracle year", Einstein published four groundbreaking papers. These outlined the theory of the photoelectric effect, explained Brownian motion, introduced special relativity, and demonstrated mass-energy equivalence. These papers were foundational to modern physics and transformed our understanding of the universe.</p>
+
+            <h2 id="political_views">Political and humanitarian work</h2>
+            <p>
+                Einstein was a passionate pacifist and a supporter of civil rights. After moving to the United States to flee the Nazi regime, he became a vocal critic of racism and segregation. He famously called racism "America's worst disease." In 1939, alarmed by the rise of Nazi Germany, he and fellow physicist Leó Szilárd signed a letter to President Franklin D. Roosevelt, warning of the potential development of "extremely powerful bombs of a new type" and recommending that the U.S. begin similar research. This letter was a key factor in the establishment of the Manhattan Project.
+            </p>
+            <blockquote>
+                <p>"Imagination is more important than knowledge. For knowledge is limited, whereas imagination embraces the entire world, stimulating progress, giving birth to evolution."</p>
+            </blockquote>
+            <p>
+                Later in life, Einstein deeply regretted his letter and became a strong advocate for nuclear disarmament and world government. He collaborated with Bertrand Russell on the Russell–Einstein Manifesto, which highlighted the dangers of nuclear weapons and called on world leaders to seek peaceful resolutions to international conflict.
+            </p>
+
+            <h2 id="legacy">Legacy</h2>
+            <p>
+                Einstein's legacy in physics is immense. His theories of relativity fundamentally changed our understanding of space, time, gravity, and the universe. His contributions to quantum theory laid the groundwork for numerous technological advancements, including lasers and semiconductors. Beyond science, Einstein became a global icon and a symbol of genius and intellectual curiosity. The element einsteinium was named in his honor, and his name is synonymous with genius.
+            </p>
+            <h3 id="awards_honors">Awards and honors</h3>
+            <p>Einstein received numerous awards and honors, including the 1921 Nobel Prize in Physics. He was also awarded the Copley Medal (1925) from the Royal Society and the Max Planck Medal (1929) from the German Physical Society. He was a member of many of the world's leading scientific academies, reflecting the profound impact of his work on the global scientific community.</p>
+
+            <h2 id="references">References</h2>
+            <div class="references">
+                <ol>
+                    <li>Isaacson, Walter (2007). <i>Einstein: His Life and Universe</i>. Simon & Schuster.</li>
+                    <li>Pais, Abraham (1982). <i>'Subtle is the Lord...': The Science and the Life of Albert Einstein</i>. Oxford University Press.</li>
+                    <li>Calaprice, Alice (2000). <i>The Expanded Quotable Einstein</i>. Princeton University Press.</li>
+                    <li>Fölsing, Albrecht (1997). <i>Albert Einstein: A Biography</i>. Viking.</li>
+                </ol>
+            </div>
+
+            <h2 id="see_also">See also</h2>
+            <ul>
+                <li>List of things named after Albert Einstein</li>
+                <li>History of special relativity</li>
+                <li>General relativity</li>
+                <li>Quantum mechanics</li>
+            </ul>
+
+            <footer class="page-footer">
+                <p>This page was last edited on 29 July 2025, at 10:33 (IST).</p>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">About WikiClone</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </footer>
+        </main>
+    </div>
+
+</body>
+</html>

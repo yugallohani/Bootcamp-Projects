@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Animation Showcase</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-bg: #f0f8ff;
+            --secondary-bg: #ffffff;
+            --accent-color-1: #ff6b6b;
+            --accent-color-2: #48dbfb;
+            --text-color: #333;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            padding: 2rem 1rem;
+        }
+
+        header {
+            margin-bottom: 3rem;
+        }
+
+        section {
+            background-color: var(--secondary-bg);
+            margin-bottom: 2rem;
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px var(--shadow-color);
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: var(--accent-color-1);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 0.5rem;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color-2);
+        }
+        
+        .animation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .animation-item {
+            width: 100%;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--primary-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .animation-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px var(--shadow-color);
+        }
+        
+        .animation-item h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(80px) scaleY(0.9);
+            }
+            60% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes rotate-infinite {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .ball {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-color-1), #ff9a9e);
+            border-radius: 50%;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        .square {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-color-2), #84fab0);
+            border-radius: 8px;
+            transition: border-radius 0.3s ease;
+        }
+        .square:hover {
+            border-radius: 50%;
+            animation: rotate-infinite 2s linear infinite;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 8px solid #eaf2f8;
+            border-top: 8px solid var(--accent-color-2);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .animated-button {
+            background-color: var(--accent-color-1);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .animated-button:hover {
+            background-color: #ff4757;
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.4);
+        }
+        
+        .about-content p {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+            section h2 {
+                font-size: 1.8rem;
+            }
+            .animation-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+                animation: none;
+            }
+             .animation-grid {
+                grid-template-columns: 1fr;
+            }
+            section {
+                padding: 2rem 1rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Welcome to the Animation World</h1>
+            <p>Pure CSS animations to delight and inspire ✨</p>
+        </header>
+
+        <main>
+            <section id="animated-elements">
+                <h2>Animation Examples</h2>
+                <div class="animation-grid">
+                    <div class="animation-item">
+                        <h3>Bouncing Ball</h3>
+                        <div class="ball"></div>
+                    </div>
+                    <div class="animation-item">
+                        <h3>Rotating Square (on hover)</h3>
+                        <div class="square"></div>
+                    </div>
+                    <div class="animation-item">
+                        <h3>Loading Spinner</h3>
+                        <div class="loader"></div>
+                    </div>
+                    <div class="animation-item">
+                        <h3>Button Hover Effect</h3>
+                        <button class="animated-button">Hover Me!</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about">
+                <h2>About The Animations</h2>
+                <div class="about-content">
+                    <p>
+                        This entire webpage is a demonstration of what can be achieved with only HTML and CSS.
+                        All the visual effects you see, from the floating title to the bouncing ball, are created
+                        using CSS <strong>@keyframes</strong>, <strong>transitions</strong>, and <strong>transforms</strong>. No JavaScript was used. This approach ensures animations are lightweight, performant, and easy to maintain.
+                    </p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>Created by Yugal Lohani</p>
+        <p>Contact: Contact@yugallohani.xyz</p>
+    </footer>
+
+</body>
+</html>

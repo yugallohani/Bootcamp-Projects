@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yugal’s Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --background: #222831;
+            --calculator-bg: #31363F;
+            --display-bg: #4A4E5A;
+            --button-bg: #4F545D;
+            --button-hover: #686e78;
+            --operator-bg: #FF9F0A;
+            --operator-hover: #fcae33;
+            --special-bg: #76ABAE;
+            --special-hover: #8ac0c2;
+            --text-light: #EEEEEE;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--background);
+            color: var(--text-light);
+        }
+        h1 {
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+        .calculator {
+            width: 100%;
+            max-width: 360px;
+            padding: 20px;
+            border-radius: 20px;
+            background-color: var(--calculator-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .display {
+            width: 100%;
+            height: 80px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: var(--display-bg);
+            border: none;
+            border-radius: 10px;
+            color: var(--text-light);
+            font-size: 2.5rem;
+            text-align: right;
+            font-weight: 500;
+            overflow-x: auto;
+        }
+        .display::-webkit-scrollbar {
+            display: none;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        .btn {
+            height: 65px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            background-color: var(--button-bg);
+            color: var(--text-light);
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn:hover {
+            background-color: var(--button-hover);
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+        .btn.operator {
+            background-color: var(--operator-bg);
+        }
+        .btn.operator:hover {
+            background-color: var(--operator-hover);
+        }
+        .btn.special {
+            background-color: var(--special-bg);
+        }
+        .btn.special:hover {
+            background-color: var(--special-hover);
+        }
+        .btn.zero {
+            grid-column: span 2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Yugal’s Calculator</h1>
+    <div class="calculator">
+        <input type="text" class="display" id="display" readonly placeholder="0">
+        <div class="buttons">
+            <button class="btn special" data-value="C">C</button>
+            <button class="btn special" data-value="⌫">⌫</button>
+            <button class="btn operator" data-value="÷">÷</button>
+            <button class="btn operator" data-value="×">×</button>
+            <button class="btn" data-value="7">7</button>
+            <button class="btn" data-value="8">8</button>
+            <button class="btn" data-value="9">9</button>
+            <button class="btn operator" data-value="-">-</button>
+            <button class="btn" data-value="4">4</button>
+            <button class="btn" data-value="5">5</button>
+            <button class="btn" data-value="6">6</button>
+            <button class="btn operator" data-value="+">+</button>
+            <button class="btn" data-value="1">1</button>
+            <button class="btn" data-value="2">2</button>
+            <button class="btn" data-value="3">3</button>
+            <button class="btn special" data-value="=">=</button>
+            <button class="btn zero" data-value="0">0</button>
+            <button class="btn" data-value=".">.</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const display = document.getElementById('display');
+            const buttonsContainer = document.querySelector('.buttons');
+            let isResultDisplayed = false;
+
+            buttonsContainer.addEventListener('click', function(e) {
+                if (!e.target.matches('.btn')) return;
+                const button = e.target;
+                const value = button.dataset.value;
+                handleInput(value);
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (['/', '*', '-', '+', 'Enter'].includes(e.key)) {
+                    e.preventDefault();
+                }
+                const keyMap = {
+                    'Enter': '=',
+                    'Backspace': '⌫',
+                    'c': 'C',
+                    'C': 'C',
+                    'Escape': 'C',
+                    'x': '×',
+                    '*': '×',
+                    '/': '÷',
+                };
+                const value = keyMap[e.key] || e.key;
+                const validKeys = "0123456789.+-÷×=⌫C";
+                if (validKeys.includes(value)) {
+                    handleInput(value);
+                    highlightButton(value);
+                }
+            });
+
+            function handleInput(value) {
+                switch (value) {
+                    case 'C':
+                        clearDisplay();
+                        break;
+                    case '⌫':
+                        deleteLastChar();
+                        break;
+                    case '=':
+                        calculateResult();
+                        break;
+                    default:
+                        appendToDisplay(value);
+                        break;
+                }
+            }
+
+            function appendToDisplay(value) {
+                if (isResultDisplayed) {
+                    if ('+-×÷'.includes(value)) {
+                        isResultDisplayed = false;
+                    } else {
+                        display.value = '';
+                        isResultDisplayed = false;
+                    }
+                }
+                display.value += value;
+            }
+
+            function clearDisplay() {
+                display.value = '';
+                isResultDisplayed = false;
+            }
+
+            function deleteLastChar() {
+                display.value = display.value.slice(0, -1);
+                isResultDisplayed = false;
+            }
+
+            function calculateResult() {
+                if (display.value === '') return;
+                try {
+                    let expression = display.value.replace(/×/g, '*').replace(/÷/g, '/');
+                    let result = eval(expression);
+                    if (!isFinite(result)) {
+                        display.value = 'Error';
+                    } else {
+                        display.value = parseFloat(result.toPrecision(12));
+                    }
+                    isResultDisplayed = true;
+                } catch (error) {
+                    display.value = 'Error';
+                    isResultDisplayed = true;
+                }
+            }
+            
+            function highlightButton(value) {
+                const button = document.querySelector(`.btn[data-value="${value}"]`);
+                if (button) {
+                    button.classList.add('active');
+                    setTimeout(() => button.classList.remove('active'), 100);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

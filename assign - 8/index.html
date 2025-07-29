@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yugal’s To-Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-bg: #ffffff;
+            --primary-text: #2c3e50;
+            --secondary-text: #7f8c8d;
+            --accent-color: #8e44ad;
+            --accent-hover: #9b59b6;
+            --divider-color: #ecf0f1;
+            --danger-color: #e74c3c;
+            --danger-hover: #c0392b;
+            --success-color: #2ecc71;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            padding: 20px;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 500px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        h1 {
+            color: var(--primary-text);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        #task-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        #task-input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            font-size: 1rem;
+            border: 2px solid var(--divider-color);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        #task-input:focus {
+            border-color: var(--accent-color);
+        }
+        #add-task-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #add-task-btn:hover {
+            background-color: var(--accent-hover);
+        }
+        #task-list {
+            list-style: none;
+            max-height: 350px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f9f9f9;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 5px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+        .task-item.completed {
+            border-left-color: var(--success-color);
+            opacity: 0.7;
+        }
+        .task-item.completed .task-text {
+            text-decoration: line-through;
+            color: var(--secondary-text);
+        }
+        .task-item .task-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-grow: 1;
+        }
+        .task-item input[type="checkbox"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--secondary-text);
+            border-radius: 50%;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .task-item input[type="checkbox"]:checked {
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .task-text {
+            color: var(--primary-text);
+            word-break: break-all;
+        }
+        .delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.5;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .delete-btn:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        .delete-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--danger-color);
+        }
+        #task-list::-webkit-scrollbar {
+            width: 8px;
+        }
+        #task-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        #task-list::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+        #task-list::-webkit-scrollbar-thumb:hover {
+            background: #aaa;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .task-item.new {
+            animation: fadeIn 0.4s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <h1>Yugal’s To-Do List</h1>
+        <form id="task-form">
+            <input type="text" id="task-input" placeholder="Add a new task..." autofocus>
+            <button type="submit" id="add-task-btn">Add</button>
+        </form>
+        <ul id="task-list"></ul>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const taskForm = document.getElementById('task-form');
+            const taskInput = document.getElementById('task-input');
+            const taskList = document.getElementById('task-list');
+
+            let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+            const saveTasks = () => {
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            };
+            
+            const renderTask = (task) => {
+                const li = document.createElement('li');
+                li.className = 'task-item';
+                li.dataset.id = task.id;
+                
+                if (task.completed) {
+                    li.classList.add('completed');
+                }
+
+                li.innerHTML = `
+                    <div class="task-content">
+                        <input type="checkbox" ${task.completed ? 'checked' : ''}>
+                        <span class="task-text">${task.text}</span>
+                    </div>
+                    <button class="delete-btn">
+                        <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>
+                    </button>
+                `;
+                
+                li.classList.add('new');
+                setTimeout(() => li.classList.remove('new'), 400);
+
+                taskList.appendChild(li);
+            };
+
+            const renderAllTasks = () => {
+                taskList.innerHTML = '';
+                tasks.forEach(renderTask);
+            };
+
+            const addTask = (text) => {
+                const newTask = {
+                    id: Date.now(),
+                    text: text,
+                    completed: false
+                };
+                tasks.push(newTask);
+                saveTasks();
+                renderTask(newTask);
+            };
+
+            const toggleTaskCompletion = (id) => {
+                const task = tasks.find(t => t.id === id);
+                if (task) {
+                    task.completed = !task.completed;
+                    saveTasks();
+                    const li = taskList.querySelector(`[data-id='${id}']`);
+                    li.classList.toggle('completed');
+                }
+            };
+            
+            const deleteTask = (id) => {
+                tasks = tasks.filter(t => t.id !== id);
+                saveTasks();
+                const li = taskList.querySelector(`[data-id='${id}']`);
+                if (li) {
+                   li.remove();
+                }
+            };
+
+            taskForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const taskText = taskInput.value.trim();
+                if (taskText !== '') {
+                    addTask(taskText);
+                    taskInput.value = '';
+                    taskInput.focus();
+                }
+            });
+
+            taskList.addEventListener('click', (e) => {
+                if (e.target.type === 'checkbox') {
+                    const id = Number(e.target.closest('.task-item').dataset.id);
+                    toggleTaskCompletion(id);
+                }
+                
+                if (e.target.closest('.delete-btn')) {
+                    const id = Number(e.target.closest('.task-item').dataset.id);
+                    deleteTask(id);
+                }
+            });
+
+            renderAllTasks();
+        });
+    </script>
+</body>
+</html>
