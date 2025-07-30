@@ -10,6 +10,6 @@ This assignment is a detailed Wikipedia-style article page about Albert Einstein
 The page is built with only HTML and CSS, closely mimicking the look and feel of Wikipedia.
 
 ## How to Use
-Visit the deployed app: [Wikipedia Article Clone Live](#)
+Visit the deployed app: [Wikipedia Article Clone Live](https://assign7-one.vercel.app/)
 
 
