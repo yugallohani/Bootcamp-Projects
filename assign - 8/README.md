@@ -9,6 +9,6 @@ This assignment is a fully functional to-do list application with:
 The app is built with HTML, CSS, and JavaScript, and demonstrates interactive DOM manipulation and persistent state.
 
 ## How to Use
-Visit the deployed app: [To-Do List App Live](#)
+Visit the deployed app: [To-Do List App Live](https://assign8-sigma.vercel.app/)
 
 
