@@ -11,5 +11,5 @@ This assignment demonstrates a variety of pure CSS animations and effects:
 All animations are created using only HTML and CSS (no JavaScript). The page also includes an "About" section explaining the techniques used.
 
 ## How to Use
-Visit the deployed app: [Assignment 6 Live](#)
+Visit the deployed app: [CSS Animation Showcase](https://assign6-alpha.vercel.app/)
 
