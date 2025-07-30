@@ -7,6 +7,6 @@ This assignment is a clone of the Medium homepage hero section, featuring:
 - Modern design and accessibility features
 
 ## How to Use
-Visit the deployed app:
+Visit the deployed app: [Medium Hero Section Clone](https://assign5-brown.vercel.app/)
 
 
