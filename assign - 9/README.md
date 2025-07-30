@@ -10,4 +10,4 @@ This assignment is a modern calculator application featuring:
 The calculator provides a smooth user experience and works on both desktop and mobile browsers.
 
 ## How to Use
-Visit the deployed app: [Calculator App Live](#)
+Visit the deployed app: [Calculator App Live](https://assign9-rose.vercel.app/)
