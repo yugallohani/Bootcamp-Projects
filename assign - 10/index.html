@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yugal's Weather App</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .weather-card, .weather-details div { transition: all 0.3s ease-in-out; }
+        .bg-gradient-main { background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%); }
+        .bg-gradient-sunny { background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%); }
+        .bg-gradient-cloudy { background-image: linear-gradient(to top, #d5d4d0 0%, #eeeeec 100%); }
+        .bg-gradient-rainy { background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); }
+        .bg-gradient-mist { background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%); }
+    </style>
+</head>
+<body class="bg-gradient-main" id="weather-body">
+
+    <div class="container mx-auto p-4 min-h-screen flex flex-col items-center justify-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white text-center mb-2">Yugal’s Weather App</h1>
+        <p class="text-white text-center mb-8">Created by Yugal Lohani</p>
+
+        <div class="w-full max-w-md bg-white/30 backdrop-blur-md rounded-2xl shadow-lg p-6">
+            <div class="relative mb-6">
+                <div class="flex items-center gap-2">
+                    <input type="text" id="city-input" class="w-full px-4 py-3 bg-white/50 text-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-white" placeholder="Enter city name..." autocomplete="off">
+                    <button id="search-btn" class="bg-white text-gray-700 p-3 rounded-xl hover:bg-gray-200">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <!-- Autocomplete dropdown will be injected here by JS -->
+            </div>
+
+            <div id="weather-card" class="weather-card text-center text-white">
+                <div id="loading" class="hidden">
+                    <i class="fas fa-spinner fa-spin fa-3x mb-4"></i>
+                    <p>Loading...</p>
+                </div>
+                <div id="error-message" class="hidden bg-red-500/50 p-4 rounded-xl">
+                    <p id="error-text">City not found. Please try again.</p>
+                </div>
+                <div id="weather-data" class="hidden">
+                    <img id="weather-icon" class="mx-auto w-32 h-32" />
+                    <h2 id="temperature" class="text-6xl font-bold">--°C</h2>
+                    <p id="weather-condition" class="text-2xl capitalize">--</p>
+                    <p id="city-country" class="text-lg">--</p>
+                    <div class="weather-details flex justify-around mt-8 bg-black/20 p-4 rounded-xl">
+                        <div class="text-center">
+                            <i class="fas fa-tint fa-2x mb-2"></i>
+                            <p id="humidity" class="font-bold text-xl">--%</p>
+                            <p class="text-sm">Humidity</p>
+                        </div>
+                        <div class="text-center">
+                            <i class="fas fa-wind fa-2x mb-2"></i>
+                            <p id="wind-speed" class="font-bold text-xl">-- km/h</p>
+                            <p class="text-sm">Wind Speed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
