@@ -10,4 +10,4 @@ This assignment is a modern weather application that allows users to:
 The app fetches real-time weather data from the OpenWeatherMap API and provides a smooth user experience with loading and error handling.
 
 ## How to Use
-Visit the deployed app: [Assignment 10 Live](https://assign10-pied.vercel.app/)
+Visit the deployed app: [Weather App Live](https://assign10-pied.vercel.app/)
