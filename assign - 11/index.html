@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yugal's Counter App</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-bg: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-color: #1c1e21;
+            --increment-color: #28a745;
+            --decrement-color: #ffc107;
+            --reset-color: #dc3545;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .counter-app {
+            background-color: var(--card-bg);
+            padding: 2rem 3rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px var(--shadow-color);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        #count-display {
+            font-size: 6rem;
+            font-weight: 700;
+            margin: 1rem 0;
+            transition: transform 0.2s ease-in-out, color 0.2s;
+        }
+        
+        .count-animate {
+            transform: scale(1.1);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        #increment-btn { background-color: var(--increment-color); }
+        #decrement-btn { background-color: var(--decrement-color); }
+        #reset-btn { background-color: var(--reset-color); }
+        
+        .shortcuts {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="counter-app">
+        <h1 class="title">Yugal’s Counter App</h1>
+        <h2 id="count-display">0</h2>
+        <div class="button-container">
+            <button id="increment-btn" class="btn">➕ Increment</button>
+            <button id="decrement-btn" class="btn">➖ Decrement</button>
+            <button id="reset-btn" class="btn">🔁 Reset</button>
+        </div>
+        <p class="shortcuts">Use ArrowUp (↑), ArrowDown (↓), and 'R' for shortcuts.</p>
+    </div>
+
+    <script>
+        const countDisplay = document.getElementById('count-display');
+        const incrementBtn = document.getElementById('increment-btn');
+        const decrementBtn = document.getElementById('decrement-btn');
+        const resetBtn = document.getElementById('reset-btn');
+
+        let count = 0;
+
+        function updateDisplay() {
+            countDisplay.textContent = count;
+            countDisplay.classList.add('count-animate');
+            setTimeout(() => {
+                countDisplay.classList.remove('count-animate');
+            }, 200);
+        }
+
+        function handleIncrement() {
+            count++;
+            updateDisplay();
+        }
+
+        function handleDecrement() {
+            if (count > 0) {
+                count--;
+                updateDisplay();
+            }
+        }
+
+        function handleReset() {
+            count = 0;
+            updateDisplay();
+        }
+
+        incrementBtn.addEventListener('click', handleIncrement);
+        decrementBtn.addEventListener('click', handleDecrement);
+        resetBtn.addEventListener('click', handleReset);
+        
+        document.addEventListener('keydown', (event) => {
+            switch (event.key) {
+                case 'ArrowUp':
+                    handleIncrement();
+                    break;
+                case 'ArrowDown':
+                    handleDecrement();
+                    break;
+                case 'r':
+                case 'R':
+                    handleReset();
+                    break;
+            }
+        });
+
+        updateDisplay();
+    </script>
+</body>
+</html>
