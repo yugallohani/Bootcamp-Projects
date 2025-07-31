@@ -12,6 +12,7 @@ This repository contains assignments for Yugal Lohani's Bootcamp. Each assignmen
 - **assign - 7:** [Wikipedia Article Clone](https://assign7-one.vercel.app/)
 - **assign - 8:** [To-Do List App](https://assign8-sigma.vercel.app/)
 - **assign - 9:** [Calculator App](https://assign9-rose.vercel.app/)
+- **assign - 10:** [Weather App](https://assign10-pied.vercel.app/)
 
 ## How to Use
 Visit the provided links above to view and interact with each assignment live.
