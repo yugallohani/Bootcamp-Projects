@@ -1,4 +1,4 @@
-# Bootcamp Projects
+# Bootcamp Projects (1 to 10)
 
 This repository contains assignments for Yugal Lohani's Bootcamp. Each assignment demonstrates modern web development skills and creative design:
 
