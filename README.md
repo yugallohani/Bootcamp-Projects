@@ -14,6 +14,8 @@ This repository contains assignments for Yugal Lohani's Bootcamp. Each assignmen
 - **assign - 9:** [Calculator App](https://assign9-rose.vercel.app/)
 - **assign - 10:** [Weather App](https://assign10-pied.vercel.app/)
 
+For assignments 11 to 20, visit this repository: [Bootcamp-Projects-2](https://github.com/yugallohani/Bootcamp-Projects-2)
+
 ## How to Use
 Visit the provided links above to view and interact with each assignment live.
 
